@@ -30,11 +30,12 @@ All figures are on held-out test sets.
 | Brain MRI | 17-class classification (tumor type x MRI sequence) | Custom 5-block CNN, trained from scratch | 8,838 images, 70/15/15 stratified split | **95.93%** (macro F1 95.86%, mean AUC 99.89%) |
 | Skin Dermoscopy | 7-class lesion classification | MobileNet (ImageNet, two-stage transfer learning) | HAM10000 (10,015 images), lesion-level split | **73.83%** (nevi recall 92.00%, melanoma recall 30.8%) |
 | Kidney CT | 4-class: Normal, Cyst, Stone, Tumor | ResNet50 with CLAHE preprocessing | Kaggle CT Kidney (12,446 images), stratified 70/15/15 | **89%** (macro F1 0.87) |
-| Chest X-Ray | 4-class: Normal, Pneumonia, COVID-19, Tuberculosis | EfficientNet-B3 (timm, PyTorch) | Class-imbalanced (Pneumonia 3,875 vs COVID-19 460) | **86.77%** with argmax; **92.48%** after NORMAL-threshold calibration (macro ROC-AUC 0.9889) |
+| Chest X-Ray | 4-class: Normal, Pneumonia, COVID-19, Tuberculosis | EfficientNet-B3 (timm, PyTorch) | Class-imbalanced (Pneumonia 3,875 vs COVID-19 460) | **86.77%** with argmax (macro ROC-AUC 0.9889); 92.48% with a tuned NORMAL threshold (optimistic, see notes) |
 
 **Notes on the results**
 
 - The skin model has low sensitivity on melanoma (30.8% recall). It is meant to flag suspicious lesions and prompt specialist consultation, not to rule cancer out.
+- The Chest X-Ray NORMAL threshold (0.03) was selected by a grid search evaluated on the test set, so the 92.48% accuracy (macro F1 0.9323) is an optimistic estimate. The 86.77% argmax result is the unbiased baseline. Tuning the threshold on a separate validation set is the proper next step.
 - Class imbalance was handled with stratified splits, inverse-frequency class weights (Kidney, Chest, Skin), and class-aware augmentation (Skin).
 - Skin and Kidney splits were built to avoid data leakage (lesion-level grouping for HAM10000, fixed seed for Kidney).
 - The Chest X-Ray model includes Grad-CAM heatmaps to check that predictions rely on lung fields rather than background artifacts.
