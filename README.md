@@ -12,7 +12,7 @@ The platform covers four imaging workflows: **Brain MRI, Skin Dermoscopy, Kidney
 |---|
 | Youssef Raafat Naguib |
 | Youssef Hosny Abdeltwab |
-| Youssef Abdelaty Abdelalim |
+| Youssef Abdelaty Abdelalem |
 | Sobhy Fayez Shafek |
 
 ## My Role
@@ -67,7 +67,7 @@ The repository is being organized. Training notebooks, evaluation results, and e
 
 ## Author
 
-**Youssef Abdelaty Abdelalim Mohammed**, Junior AI & Machine Learning Engineer
+**Youssef Abdelaty Abdelalem Mohammed**, Junior AI & Machine Learning Engineer
 [GitHub](https://github.com/youssef-abdelaty) | [LinkedIn](https://www.linkedin.com/in/youssef%D9%80abdelaty)
 
 ## License
